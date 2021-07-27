@@ -29,4 +29,7 @@ class Blog extends Model
     public function cat(){
         return $this->belongsToMany(Category::class,'blogcategories');
     }
+    public function user(){
+        return $this->belongsTo(User::class)->select('id', 'fullName', 'profilePic');
+    }
 }
