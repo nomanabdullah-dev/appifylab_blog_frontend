@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Our awesome home page title')
+@section('title', 'AppifyLab | Home')
 @section('maincontent')
 <!-- BANNER -->
 <section class="banner_sec">
@@ -9,15 +9,15 @@
                 <div class="row">
                     @if (count($categories)>0)
                     @foreach ($categories as $nav)
-                    <div class="col-12 col-md-4 col-lg-4">
-                        <a href="">
-                            <div class="banner_box">
-                                <i class="fab fa-laravel"></i>
-                                <h3 class="banner_box_h3">{{ $nav->categoryName }}</h3>
-                                <p>The Toptal Blog is the top hub for developers.</p>
-                            </div>
-                        </a>
-                    </div>
+                        <div class="col-12 col-md-4 col-lg-4">
+                            <a href="/category/{{$nav->categoryName}}/{{$nav->id}}">
+                                <div class="banner_box">
+                                    <i class="fa fa-laravel"></i>
+                                    <h3 class="banner_box_h3">{{ $nav->categoryName }}</h3>
+                                    <p>The Toptal Blog is the top hub for developers.</p>
+                                </div>
+                            </a>
+                        </div>
                     @endforeach
                     @endif
                 </div>
@@ -49,27 +49,26 @@
                                     <ul class="home_card_bottom_text_ul">
                                         @foreach ($b->cat as $c)
                                         <li>
-                                            <a href="blog_post.html">{{ $c->categoryName }}</a>
-                                            <span><i class="fas fa-angle-right"></i></span>
+                                            <a href="/category/{{$nav->categoryName}}/{{$nav->id}}">{{ $c->categoryName }}</a>
+                                            <span><i class="fa fa-angle-right"></i></span>
                                         </li>
                                         @endforeach
                                     </ul>
                                     @endif
-                                    <a href="blog_post.html">
+                                    <a href="/blog/{{ $b->slug }}">
                                         <h2 class="home_card_h2">{{ $b->title }}</h2>
                                     </a>
-                                    <p class="post_p">{{ $b->post_excerpt }}</p>
+                                    <a href="/blog/{{ $b->slug }}"><p class="post_p">{{ $b->post_excerpt }}</p></a>
                                     <div class="home_card_bottom_tym">
                                         <div class="home_card_btm_left">
-                                            <img src="img/man1.jpg" alt="image">
+                                            <img src="/img/man1.jpg" alt="image">
                                         </div>
                                         <div class="home_card_btm_r8">
-                                            <a href="contact_me.html">
-                                                <p class="author_name">{{ $b->user->fullName }}</p>
+                                            <a href="/contact_me">
+                                                <p class="">{{ $b->user->fullName }}</p>
                                             </a>
                                             <ul class="home_card_btm_r8_ul">
-                                                <li>Dec 4, 2019</li>
-                                                <li><span class="dot"></span>3 Min Read</li>
+                                                <li>{{ date('d-M-Y', strtotime($b->created_at)); }}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -82,36 +81,10 @@
                 @endif
             </div>
             <div class="text-center">
-                <button class="btn btn-primary"><a href="/blogs">View All</a></button>
+                <button class="btn btn-primary"><a href="/blogs"><span style="color: white">View All</span></a></button>
             </div>
         </div>
     </div>
-
-    <!-- PAGINATION -->
-    {{-- <div class="pagination">
-				<ul class="pagination_ul d-flex">
-					<li>
-						<a href="">
-							<i class="fas fa-chevron-left"></i>
-						</a>
-					</li>
-					<li>
-						<a href="">1</a>
-					</li>
-					<li>
-						<a href="">2</a>
-					</li>
-					<li>
-						<a href="">3</a>
-					</li>
-					<li>
-						<a href="">
-							<i class="fas fa-chevron-right"></i>
-						</a>
-					</li>
-				</ul>
-			</div> --}}
-    <!-- PAGINATION -->
 </div>
 <!-- BODY -->
 @endsection

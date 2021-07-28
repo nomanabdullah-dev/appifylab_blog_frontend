@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Our awesome home page title')
+@section('title', 'AppifyLab | Blogs')
 @section('maincontent')
 <!-- BANNER -->
 <section class="banner_sec">
@@ -37,13 +37,13 @@
                                     <ul class="home_card_bottom_text_ul">
                                         @foreach ($b->cat as $c)
                                         <li>
-                                            <a href="blog_post.html">{{ $c->categoryName }}</a>
-                                            <span><i class="fas fa-angle-right"></i></span>
+                                            <a href="/category/{{$c->categoryName}}/{{$c->id}}">{{ $c->categoryName }}</a>
+                                            <span><i class="fa fa-angle-right"></i></span>
                                         </li>
                                         @endforeach
                                     </ul>
                                     @endif
-                                    <a href="blog_post.html">
+                                    <a href="/blog/{{ $b->slug }}">
                                         <h2 class="home_card_h2">{{ $b->title }}</h2>
                                     </a>
                                     <p class="post_p">{{ $b->post_excerpt }}</p>
@@ -52,7 +52,7 @@
                                             <img src="img/man1.jpg" alt="image">
                                         </div>
                                         <div class="home_card_btm_r8">
-                                            <a href="contact_me.html">
+                                            <a href="/contact_me">
                                                 <p class="author_name">{{ $b->user->fullName }}</p>
                                             </a>
                                             <ul class="home_card_btm_r8_ul">

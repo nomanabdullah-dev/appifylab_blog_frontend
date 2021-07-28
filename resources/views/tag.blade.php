@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Our awesome home page title')
+@section('title', 'AppifyLab | Tags')
 @section('maincontent')
 <!-- BANNER -->
 <section class="banner_sec">
@@ -77,7 +77,7 @@
                 @endforeach
                 @endif
             </div>
-            
+
             {{ $blogs->links('pagination::bootstrap-4') }}
         </div>
     </div>
